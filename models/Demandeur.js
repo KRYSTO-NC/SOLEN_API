@@ -5,15 +5,13 @@ const DemandeurSchema = new mongoose.Schema(
     type: {
       type: String,
       enum: ["Professionnel", "Particulier"],
-      default: "user",
     },
  
 
-    raisonSocial: {
-      type: String,
-    },
-
-
+    compagny: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Compagny',
+      },
     contact: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Contact',
