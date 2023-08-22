@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const BenneficiaireSchema = new mongoose.Schema(
   {
 
-    numClientEnercal: {
+    numClientEEC: {
       type: String,
     },
+ 
 
 
     contact: {
