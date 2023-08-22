@@ -14,7 +14,7 @@ const TypeInstallationSchema = new mongoose.Schema(
       type: Number,
     },
 
-    Amp: {
+    amperage: {
       type: Number,
     },
   },
