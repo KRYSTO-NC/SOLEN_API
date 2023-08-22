@@ -37,6 +37,7 @@ const demandeurs = require('./models/Demandeur.js')
 const typesInstallation = require('./models/TypeInstallation.js')
 const installations = require('./models/Installation.js')
 const compagnies = require('./models/Compagny.js')
+const interventions = require('./models/Intervention.js')
 
 
 
@@ -98,6 +99,7 @@ app.use('/api/v1/benneficiares', benneficiaires)
 app.use('/api/v1/demandeurs', demandeurs)
 app.use('/api/v1/types-installation', typesInstallation)
 app.use('/api/v1/installations', installations)
+app.use('/api/v1/interventions', interventions)
 
 
 

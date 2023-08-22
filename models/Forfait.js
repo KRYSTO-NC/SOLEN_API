@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PrixForfaitaireInstallSchema = new mongoose.Schema(
+const ForfaitSchema = new mongoose.Schema(
   {
     type: {
       type: String,
@@ -48,7 +48,4 @@ const PrixForfaitaireInstallSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model(
-  "PrixForfaitaireInstall",
-  PrixForfaitaireInstallSchema
-);
+module.exports = mongoose.model("Forfait", ForfaitSchema);
