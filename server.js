@@ -36,6 +36,7 @@ const benneficiaires = require('./models/Benneficiaire.js')
 const demandeurs = require('./models/Demandeur.js')
 const typesInstallation = require('./models/TypeInstallation.js')
 const installations = require('./models/Installation.js')
+const compagnies = require('./models/Compagny.js')
 
 
 
@@ -92,6 +93,7 @@ app.use('/api/v1/users', users)
 app.use('/api/v1/origines', origines)
 app.use('/api/v1/communes', communes)
 app.use('/api/v1/contacts', contacts)
+app.use('/api/v1/compagnies', compagnies)
 app.use('/api/v1/benneficiares', benneficiaires)
 app.use('/api/v1/demandeurs', demandeurs)
 app.use('/api/v1/types-installation', typesInstallation)
