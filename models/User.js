@@ -29,6 +29,8 @@ const UserSchema = new mongoose.Schema(
       select: false,
     },
     
+
+    
     contact: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Contact',
