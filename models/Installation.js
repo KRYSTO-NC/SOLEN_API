@@ -60,10 +60,6 @@ const InstallationSchema = new mongoose.Schema(
       type: String,
     },
 
-    prenom: {
-      type: String,
-    },
-
     numClientEnercal: {
       type: String,
     },

@@ -7,13 +7,7 @@ const DemandeurSchema = new mongoose.Schema(
       enum: ["Professionnel", "Particulier"],
       default: "user",
     },
-    nom: {
-      type: String
-    },
-
-    prenom: {
-      type: String
-    },
+ 
 
     raisonSocial: {
       type: String,

@@ -5,18 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema(
   {
-
-  
-    firstname: {
-      type: String,
-      required: [true, "merci d'entrer un prénom"],
-    },
-
-    lastname: {
-      type: String,
-      required: [true, "Merci d'entrer un nom de famille"],
-    },
-
+ 
     email: {
       type: String,
       required: [true, "Merci d'entrer un email"],
@@ -26,16 +15,10 @@ const UserSchema = new mongoose.Schema(
         'Please add a valid email',
       ],
     },
-    
-    phone: {
-      type: String,
-      required: [true, "Merci d'entrer un numéro de télèphone"],
-      unique: true
-    },
 
     role: {
       type: String,
-      enum: ['user', 'admin', 'installateur', 'Commercial'],
+      enum: ['user', 'admin', 'technique', 'Commercial'],
       default: 'user',
     },
 

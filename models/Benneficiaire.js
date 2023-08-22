@@ -2,13 +2,6 @@ const mongoose = require("mongoose");
 
 const BenneficiaireSchema = new mongoose.Schema(
   {
-    nom: {
-      type: String
-    },
-
-    prenom: {
-      type: String
-    },
 
     numClientEnercal: {
       type: String,
