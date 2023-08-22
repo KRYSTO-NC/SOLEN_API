@@ -33,7 +33,7 @@ const InstallationSchema = new mongoose.Schema(
     },
     concessionaire: {
       type: String,
-      enum: ['EEC', 'Enercal']
+      enum: ["EEC", "Enercal"],
     },
 
     dateDemandeEEC: {
@@ -47,47 +47,39 @@ const InstallationSchema = new mongoose.Schema(
     numClientEnercal: {
       type: Date,
     },
-  
 
     onduleurs: [
       {
         ref: {
           type: String, // Ou Number, selon le type de la référence dolibar
-         
         },
         nombre: {
           type: Number,
-    
-        }
-      }
+        },
+      },
     ],
     systemeDeSupportage: [
       {
         ref: {
           type: String, // Ou Number, selon le type de la référence dolibar
-         
         },
         nombre: {
           type: Number,
-    
-        }
-      }
+        },
+      },
     ],
-        batteries: [
+    batteries: [
       {
         ref: {
           type: String, // Ou Number, selon le type de la référence dolibar
-         
         },
         nombre: {
           type: Number,
-    
         },
         suppervision: {
           type: Number,
-    
-        }
-      }
+        },
+      },
     ],
 
     address: {
@@ -110,8 +102,6 @@ const InstallationSchema = new mongoose.Schema(
       zipcode: String,
       country: String,
     },
-
-  
   },
 
   {

@@ -1,30 +1,24 @@
 [
 	{
 		"_id": "5d7a514b5d2c12c7449be010",
-		"firstname": "Jhon",
-		"lastname": "Doe",
+		"username": "Wilfrid",
 		"email": "admin@gmail.com",
 		"role": "admin",
-		"phone": "93.92.53",
 		"password": "123456"
 	},
 
 	{
 		"_id": "5d7a514b5d2c12c7449be011",
-		"firstname": "Wilfried",
-		"lastname": "Guillaume",
+		"username": "Greg",
 		"email": "wil@gmail.com",
 		"role": "admin",
-		"phone": "52.42.53",
 		"password": "123456"
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be012",
-		"firstname": "Jane",
-		"lastname": "Dae",
+		"username": "Stoyann",
 		"email": "user@gmail.com",
 		"role": "user",
-		"phone": "78.42.73",
 		"password": "123456"
 	}
 ]

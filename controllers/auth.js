@@ -8,17 +8,13 @@ const User = require("../models/User");
 // @route     POST /api/v1/auth/register
 // @access    Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { phone, firstname, lastname, email, password, role } = req.body;
+  const {  email, password, role } = req.body;
 
   // Create user
   const user = await User.create({
-    firstname,
-    lastname,
     email,
     password,
-    phone,
-    role,
-    jobFunction,
+    role
   });
 
   sendTokenResponse(user, 200, res);
@@ -84,11 +80,7 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 // @access    Private
 exports.updateDetails = asyncHandler(async (req, res, next) => {
   const fieldsToUpdate = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
     email: req.body.email,
-    phone: req.body.phone,
-    jobFunction: req.body.jobFunction,
   };
 
   const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
@@ -206,7 +198,7 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 const sendTokenResponse = (user, statusCode, res) => {
   // Create token
   const token = user.getSignedJwtToken();
-
+  
   const options = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
@@ -221,5 +213,6 @@ const sendTokenResponse = (user, statusCode, res) => {
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
     token,
+    userRole: user.role,
   });
 };
