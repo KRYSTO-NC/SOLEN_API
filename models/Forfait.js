@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 
 const ForfaitSchema = new mongoose.Schema(
   {
-    type: {
-      type: String,
-      enum: ["Professionnel", "Particulier"],
-    },
-
+ 
     typeInstallation: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "TypeInstallation",

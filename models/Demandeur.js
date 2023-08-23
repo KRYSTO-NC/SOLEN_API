@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const DemandeurSchema = new mongoose.Schema(
   {
+
+    origine: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Origine',
+    },
     type: {
       type: String,
       enum: ["Professionnel", "Particulier"],

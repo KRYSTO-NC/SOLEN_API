@@ -1,3 +1,51 @@
 [
-    
-]
+    {
+      "typeInstallation": "60e72dfb5d2c12c7449be001",
+      "datePrevisionelMiseEnService": "2023-08-24",
+      "puissanceSouscrite": 10,
+      "puissanceTotalOnduleur": 15,
+      "puissancePvEtHybrid": 12,
+      "valeurBridagePuissance": 5,
+      "valeurBridageReinjection": 3,
+      "stockage": true,
+      "capaciteBatterie": 50,
+      "concessionaire": "EEC",
+      "dateDemandeEEC": "2023-05-12",
+      "onduleurs": [
+        {"ref": "OND123", "nombre": 2},
+        {"ref": "OND456", "nombre": 3}
+      ],
+      "systemeDeSupportage": [
+        {"ref": "SUPP789", "nombre": 4}
+      ],
+      "batteries": [
+        {"ref": "BAT101", "nombre": 2, "suppervision": 1}
+      ],
+      "address": "123 Rue de la République, Nouméa"
+    },
+    {
+      "typeInstallation": "60e72dfb5d2c12c7449be002",
+      "datePrevisionelMiseEnService": "2023-09-10",
+      "puissanceSouscrite": 8,
+      "puissanceTotalOnduleur": 13,
+      "puissancePvEtHybrid": 11,
+      "valeurBridagePuissance": 4,
+      "valeurBridageReinjection": 2,
+      "stockage": false,
+      "capaciteBatterie": 40,
+      "concessionaire": "Enercal",
+      "dateDemandeEEC": "2023-04-15",
+      "onduleurs": [
+        {"ref": "OND789", "nombre": 3},
+        {"ref": "OND321", "nombre": 1}
+      ],
+      "systemeDeSupportage": [
+        {"ref": "SUPP654", "nombre": 3}
+      ],
+      "batteries": [
+        {"ref": "BAT202", "nombre": 1, "suppervision": 0}
+      ],
+      "address": "456 Rue des Cocotiers, Nouméa"
+    }
+  ]
+  

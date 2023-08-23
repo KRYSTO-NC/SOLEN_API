@@ -1,0 +1,132 @@
+[
+  
+    {
+      "_id": "60fc9a9a53b36f9f6a9fb0b9",
+      "nom": "Ouégoa",
+      "codePostal": "98821"
+    },
+  
+    {
+      "_id": "60fc9a9a53b36f9f6a9fb0bb",
+      "nom": "Kaala Gomen",
+      "codePostal": "98817"
+    },
+  
+    {
+      "_id": "60fc9a9a53b36f9f6a9fb0bd",
+      "nom": "Maré",
+      "codePostal": "98828"
+    },
+  
+    {
+      "_id": "60fc9a9a53b36f9f6a9fb0bf",
+      "nom": "Kouaoua",
+      "codePostal": "98818"
+    },
+ 
+    {
+      "_id": "60fc9a9a53b36f9f6a9fb0c1",
+      "nom": "Poya",
+      "codePostal": "98827"
+    },
+    {
+      "_id": "60fc9a9a53b36f9f6a9fb0c3",
+      "nom": "Dumbéa",
+      "codePostal": "98835"
+    },
+
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0c5",
+        "nom": "Pouébo",
+        "codePostal": "98824"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0c7",
+        "nom": "Mont Dore",
+        "codePostal": "98809"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0c9",
+        "nom": "Voh",
+        "codePostal": "98833"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0cb",
+        "nom": "Canala",
+        "codePostal": "98813"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0cd",
+        "nom": "Ile des Pins",
+        "codePostal": "98832"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0cf",
+        "nom": "Hienghène",
+        "codePostal": "98815"
+      },
+ 
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0d1",
+        "nom": "Ouvéa",
+        "codePostal": "98814"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0d3",
+        "nom": "Ponérihouen",
+        "codePostal": "98823"
+      },
+  
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0d5",
+        "nom": "Bourail",
+        "codePostal": "98870"
+      },
+   
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0d7",
+        "nom": "Houailou",
+        "codePostal": "98816"
+      },
+  
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0d9",
+        "nom": "Pouembout",
+        "codePostal": "98825"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0db",
+        "nom": "Païta",
+        "codePostal": "98889"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0dd",
+        "nom": "Touho",
+        "codePostal": "98831"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0df",
+        "nom": "Farino",
+        "codePostal": "98881"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0e1",
+        "nom": "Boulouparis",
+        "codePostal": "98812"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0e3",
+        "nom": "Belep",
+        "codePostal": "98811"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0e5",
+        "nom": "Koumac",
+        "codePostal": "98850"
+      },
+      {
+        "_id": "60fc9a9a53b36f9f6a9fb0e7",
+        "nom": "Nouméa",
+        "codePostal": "98800"
+      }
+    ]

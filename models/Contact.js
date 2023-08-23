@@ -33,12 +33,12 @@ const ContactSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: [true, "Merci d'entrer un numéro de télèphone"],
-      unique: true,
+      
     },
 
     phone2: {
       type: String,
-      unique: true,
+     
     },
 
     function: {

@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const geocoder = require('../utils/geocoder')
 const CompagnySchema = new mongoose.Schema(
   {
+
+ 
     ridet: {
       type: String,
     },
