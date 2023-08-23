@@ -32,14 +32,12 @@ const users = require('./routes/users')
 const origines = require('./routes/origines.js')
 const contacts = require('./routes/contacts.js')
 const communes = require('./routes/communes.js')
-const benneficiaires = require('./models/Benneficiaire.js')
-const demandeurs = require('./models/Demandeur.js')
-const typesInstallation = require('./models/TypeInstallation.js')
-const installations = require('./models/Installation.js')
-const compagnies = require('./models/Compagny.js')
-const interventions = require('./models/Intervention.js')
-
-
+const benneficiaires = require('./routes/benneficiaires.js')
+const demandeurs = require('./routes/demandeurs.js')
+const typesInstallation = require('./routes/typeInstallations.js')
+const installations = require('./routes/installations.js')
+const compagnies = require('./routes/companies.js')
+const interventions = require('./routes/interventions.js')
 
 // initialize express  application
 const app = express()
@@ -100,8 +98,6 @@ app.use('/api/v1/demandeurs', demandeurs)
 app.use('/api/v1/types-installation', typesInstallation)
 app.use('/api/v1/installations', installations)
 app.use('/api/v1/interventions', interventions)
-
-
 
 app.use(errorHandler)
 

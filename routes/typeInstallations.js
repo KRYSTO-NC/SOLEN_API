@@ -1,28 +1,28 @@
-const express = require('express');
+const express = require('express')
 const {
   getTypeInstallations,
   createTypeInstallation,
   getTypeInstallation,
   updateTypeInstallation,
   deleteTypeInstallation,
-} = require('../controllers/types-installations');
+} = require('../controllers/typeInstallations')
 
-const TypeInstallation = require('../models/TypeInstallation');
+const TypeInstallation = require('../models/TypeInstallation')
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true })
 
-const advancedResults = require('../middlewares/advancedResults');
-const { protect, authorize } = require('../middlewares/auth');
+const advancedResults = require('../middlewares/advancedResults')
+const { protect, authorize } = require('../middlewares/auth')
 
 router
   .route('/')
   .get(advancedResults(TypeInstallation), getTypeInstallations)
-  .post(protect, authorize('admin'), createTypeInstallation);
+  .post(protect, authorize('admin'), createTypeInstallation)
 
 router
   .route('/:id')
   .get(getTypeInstallation)
   .put(protect, authorize('admin'), updateTypeInstallation)
-  .delete(protect, authorize('admin'), deleteTypeInstallation);
+  .delete(protect, authorize('admin'), deleteTypeInstallation)
 
-module.exports = router;
+module.exports = router

@@ -1,28 +1,28 @@
-const express = require('express');
+const express = require('express')
 const {
   getBeneficiaires,
   createBeneficiaire,
   getBeneficiaire,
   updateBeneficiaire,
   deleteBeneficiaire,
-} = require('../controllers/beneficiaires');
+} = require('../controllers/benneficiares')
 
-const Benneficiaire = require('../models/Benneficiaire');
+const Benneficiaire = require('../models/Benneficiaire')
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true })
 
-const advancedResults = require('../middlewares/advancedResults');
-const { protect, authorize } = require('../middlewares/auth');
+const advancedResults = require('../middlewares/advancedResults')
+const { protect, authorize } = require('../middlewares/auth')
 
 router
   .route('/')
   .get(advancedResults(Benneficiaire), getBeneficiaires)
-  .post(protect, authorize('admin'), createBeneficiaire);
+  .post(protect, authorize('admin'), createBeneficiaire)
 
 router
   .route('/:id')
   .get(getBeneficiaire)
   .put(protect, authorize('admin'), updateBeneficiaire)
-  .delete(protect, authorize('admin'), deleteBeneficiaire);
+  .delete(protect, authorize('admin'), deleteBeneficiaire)
 
-module.exports = router;
+module.exports = router
