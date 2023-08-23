@@ -1,30 +1,40 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose')
+const geocoder = require('../utils/geocoder')
 const CompagnySchema = new mongoose.Schema(
   {
-  
     ridet: {
       type: String,
     },
     nomCommercial: {
-      type: Number,
+      type: String,
     },
     raisonSocial: {
-      type: Number,
+      type: String,
     },
-  
+
     type: {
       type: String,
-      enum: ["EI", "SA", "SARL", "SAS", "SNC", "Associations", "Administration", "SCI", "SCP", "GIE", "GIP"],
+      enum: [
+        'EI',
+        'SA',
+        'SARL',
+        'SAS',
+        'SNC',
+        'Association',
+        'Administration',
+        'SCI',
+        'SCP',
+        'GIE',
+        'GIP',
+      ],
     },
 
-
     contacts: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Contact"
-        }
-      ],
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Contact',
+      },
+    ],
 
     address: {
       type: String,
@@ -34,11 +44,11 @@ const CompagnySchema = new mongoose.Schema(
     location: {
       type: {
         type: String,
-        enum: ["Point"],
+        enum: ['Point'],
       },
       coordinates: {
         type: [Number],
-        index: "2dsphere",
+        index: '2dsphere',
       },
       formattedAddress: String,
       street: String,
@@ -52,14 +62,14 @@ const CompagnySchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
-);
+  },
+)
 
 // Geocode & create location
-CompagnySchema.pre("save", async function (next) {
-  const loc = await geocoder.geocode(this.address);
+CompagnySchema.pre('save', async function (next) {
+  const loc = await geocoder.geocode(this.address)
   this.location = {
-    type: "Point",
+    type: 'Point',
     coordinates: [loc[0].longitude, loc[0].latitude],
     formattedAddress: loc[0].formattedAddress,
     street: loc[0].streetName,
@@ -67,11 +77,11 @@ CompagnySchema.pre("save", async function (next) {
     state: loc[0].stateCode,
     zipcode: loc[0].zipcode,
     country: loc[0].countryCode,
-  };
+  }
 
   // Do not save address
-  this.address = undefined;
-  next();
-});
+  this.address = undefined
+  next()
+})
 
-module.exports = mongoose.model("Compagny", CompagnySchema);
+module.exports = mongoose.model('Compagny', CompagnySchema)

@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose')
+const geocoder = require('../utils/geocoder')
 const InstallationSchema = new mongoose.Schema(
   {
     typeInstallation: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "TypeInstallation",
+      ref: 'TypeInstallation',
     },
 
     datePrevisionelMiseEnService: {
@@ -33,7 +33,7 @@ const InstallationSchema = new mongoose.Schema(
     },
     concessionaire: {
       type: String,
-      enum: ["EEC", "Enercal"],
+      enum: ['EEC', 'Enercal'],
     },
 
     dateDemandeEEC: {
@@ -90,11 +90,11 @@ const InstallationSchema = new mongoose.Schema(
     location: {
       type: {
         type: String,
-        enum: ["Point"],
+        enum: ['Point'],
       },
       coordinates: {
         type: [Number],
-        index: "2dsphere",
+        index: '2dsphere',
       },
       formattedAddress: String,
       street: String,
@@ -108,14 +108,14 @@ const InstallationSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
-);
+  },
+)
 
 // Geocode & create location
-InstallationSchema.pre("save", async function (next) {
-  const loc = await geocoder.geocode(this.address);
+InstallationSchema.pre('save', async function (next) {
+  const loc = await geocoder.geocode(this.address)
   this.location = {
-    type: "Point",
+    type: 'Point',
     coordinates: [loc[0].longitude, loc[0].latitude],
     formattedAddress: loc[0].formattedAddress,
     street: loc[0].streetName,
@@ -123,11 +123,11 @@ InstallationSchema.pre("save", async function (next) {
     state: loc[0].stateCode,
     zipcode: loc[0].zipcode,
     country: loc[0].countryCode,
-  };
+  }
 
   // Do not save address
-  this.address = undefined;
-  next();
-});
+  this.address = undefined
+  next()
+})
 
-module.exports = mongoose.model("Installation", InstallationSchema);
+module.exports = mongoose.model('Installation', InstallationSchema)
