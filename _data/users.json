@@ -1,7 +1,7 @@
 [
 	{
 		"_id": "5d7a514b5d2c12c7449be010",
-		"username": "Wilfrid",
+		"username": "admin",
 		"email": "admin@gmail.com",
 		"role": "admin",
 		"password": "123456"
@@ -9,16 +9,23 @@
 
 	{
 		"_id": "5d7a514b5d2c12c7449be011",
-		"username": "Greg",
-		"email": "wil@gmail.com",
-		"role": "admin",
+		"username": "commercial",
+		"email": "commercial@gmail.com",
+		"role": "commercial",
 		"password": "123456"
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be012",
+		"username": "technique",
+		"email": "technique@gmail.com",
+		"role": "technique",
+		"password": "123456"
+	},
+	{
+		"_id": "5d7a514b5d2c12c7449be013",
 		"username": "Amandine",
 		"email": "amandine@gmail.com",
-		"role": "technique",
+		"role": "user",
 		"password": "123456"
 	},
 	{
@@ -29,10 +36,26 @@
 		"password": "123456"
 	},
 	{
-		"_id": "5d7a514b5d2c12c7449be013",
+		"_id": "5d7a514b5d2c12c7449be015",
 		"username": "Stoyann",
-		"email": "user@gmail.com",
+		"email": "stoyann@gmail.com",
 		"role": "user",
+		"password": "123456"
+	}
+	,
+	{
+		"_id": "5d7a514b5d2c12c7449be016",
+		"username": "greg",
+		"email": "greg@gmail.com",
+		"role": "technique",
+		"password": "123456"
+	}
+	,
+	{
+		"_id": "5d7a514b5d2c12c7449be017",
+		"username": "Jerome",
+		"email": "jerome@gmail.com",
+		"role": "commercial",
 		"password": "123456"
 	}
 ]
