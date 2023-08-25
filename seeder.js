@@ -14,6 +14,7 @@ const Compagny = require('./models/Compagny')
 const Demandeur = require('./models/Demandeur')
 const TypeInstallation = require('./models/TypeInstallation')
 const  Installation = require('./models/Installation')
+const  Intervention = require('./models/Intervention')
 const  Benneficiare = require('./models/Benneficiaire')
 const  Forfait = require('./models/Forfait')
 const  Origine = require('./models/Origine')
@@ -58,6 +59,9 @@ const origines = JSON.parse(
 const communes = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/communes.json`, 'utf-8'),
 )
+const interventions = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/interventions.json`, 'utf-8'),
+)
 
 // Import into DB
 const importData = async () => {
@@ -72,6 +76,7 @@ const importData = async () => {
     await Origine.create(origines)
     await Forfait.create(forfaits)
     await Commune.create(communes)
+    await Intervention.create(interventions)
 
     console.log('Data Imported...'.green.inverse)
     process.exit()
@@ -93,6 +98,7 @@ const deleteData = async () => {
     await Forfait.deleteMany()
     await Origine.deleteMany()
     await Commune.deleteMany()
+    await Intervention.deleteMany()
     console.log('Data Destroyed...'.red.inverse)
     process.exit()
   } catch (err) {

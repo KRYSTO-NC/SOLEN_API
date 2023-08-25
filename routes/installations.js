@@ -16,7 +16,7 @@ const { protect, authorize } = require('../middlewares/auth');
 
 router
   .route('/')
-  .get(advancedResults(Installation), getInstallations)
+  .get(advancedResults(Installation, 'typeInstallation benneficiaire demandeur interventions'), getInstallations)
   .post(protect, authorize('admin'), createInstallation);
 
 router

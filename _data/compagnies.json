@@ -152,7 +152,6 @@
   },
   {
     "_id": "6d7a514b5d2c12c7449be061",
-
     "ridet": "7654322",
     "nomCommercial": "CaledoniaBank",
     "raisonSocial": "Caledonia Banking Group",
@@ -161,7 +160,7 @@
   },
   {
     "_id": "6d7a514b5d2c12c7449be062",
-    "origine": "60e73dfb5d2c12c7449be004",
+ 
     "ridet": "1827370",
     "nomCommercial": "ReefTourism",
     "raisonSocial": "Reef Tourism Agency",
@@ -170,7 +169,7 @@
   },
   {
     "_id": "6d7a514b5d2c12c7449be063",
-    "origine": "60e73dfb5d2c12c7449be004",
+ 
     "ridet": "8274562",
     "nomCommercial": "EcoTransport",
     "raisonSocial": "Eco Transportation Services",
