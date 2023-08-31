@@ -5,20 +5,6 @@
       "raccordement": "mono",
       "puissance": 10,
       "amperage": 40
-    },
-    {
-      "_id": "60e72dfb5d2c12c7449be002",
-      "nom": "Installation Solaire Avancée",
-      "raccordement": "tri",
-      "puissance": 15,
-      "amperage": 60
-    },
-    {
-      "_id": "60e72dfb5d2c12c7449be003",
-      "nom": "Installation Hybride",
-      "raccordement": "tri",
-      "puissance": 20,
-      "amperage": 80
     }
   ]
   

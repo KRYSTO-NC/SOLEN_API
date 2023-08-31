@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const optionMaintenanceSchema = new mongoose.Schema(
   {
@@ -11,10 +11,10 @@ const optionMaintenanceSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
-);
+  },
+)
 
 exports.OptionMaintenance = mongoose.model(
-  "OptionMaintenance",
-  optionMaintenanceSchema
-);
+  'OptionMaintenance',
+  optionMaintenanceSchema,
+)

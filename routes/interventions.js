@@ -1,28 +1,29 @@
-const express = require('express');
+const express = require('express')
 const {
   getInterventions,
   createNewIntervention,
   getIntervention,
   updateIntervention,
   deleteIntervention,
-} = require('../controllers/interventions');
+  createNewInterventionForInstallation,
+} = require('../controllers/interventions')
 
-const Intervention = require('../models/Intervention');
+const Intervention = require('../models/Intervention')
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true })
 
-const advancedResults = require('../middlewares/advancedResults');
-const { protect, authorize } = require('../middlewares/auth');
+const advancedResults = require('../middlewares/advancedResults')
+const { protect, authorize } = require('../middlewares/auth')
 
 router
   .route('/')
-  .get(advancedResults(Intervention , 'installation'), getInterventions)
-  .post(protect, authorize('admin'), createNewIntervention);
+  .get(advancedResults(Intervention, 'installation'), getInterventions)
+  .post(createNewInterventionForInstallation)
 
 router
   .route('/:id')
   .get(getIntervention)
-  .put(protect, authorize('admin'), updateIntervention)
-  .delete(protect, authorize('admin'), deleteIntervention);
+  .put(updateIntervention)
+  .delete(deleteIntervention)
 
-module.exports = router;
+module.exports = router

@@ -1,12 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const ContratMaintenanceSchema = new mongoose.Schema(
   {
     installation: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Installation",
+      ref: 'Installation',
       required: true,
     },
+
+    factured: {
+      type: Boolean,
+      default: false,
+    },
+
     dateDebut: {
       type: Date,
       required: true,
@@ -20,11 +26,11 @@ const ContratMaintenanceSchema = new mongoose.Schema(
         option: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "OptionMaintenance",
+          ref: 'OptionMaintenance',
         },
         recurence: {
           type: String,
-          enum: ["Hebdomadaire", "Mensuelle", "Trimestrielle", "Annuelle"],
+          enum: ['Hebdomadaire', 'Mensuelle', 'Trimestrielle', 'Annuelle'],
           required: true,
         },
       },
@@ -35,7 +41,7 @@ const ContratMaintenanceSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
-);
+  },
+)
 
-module.exports = mongoose.model("ContratMaintenance", ContratMaintenanceSchema);
+module.exports = mongoose.model('ContratMaintenance', ContratMaintenanceSchema)

@@ -3,98 +3,14 @@
      "_id": "7d7a514b5d2c12c7549be061",
       "installation": "80e72dfb5d2c12c7449be001",
       "createdBy": "5d7a514b5d2c12c7449be010",
-      "technicien": "60e830a8d4f9a3c2497be002",
+      "technicien": "John Doe",
       "type": "SAV",
+      "status": "Demande",
       "dateDemande": "2023-08-24T00:00:00.000Z",
       "facturation": true,
-      "datePrevisionelIntervention": "2023-09-01T00:00:00.000Z",
-      "dateIntervention": "2023-09-02T00:00:00.000Z",
+      "garantie": true,
       "remarqueDemande": "Remarque sur la demande",
       "remarqueIntervention": "Remarque sur l'intervention"
-    },
-    {
-        "_id": "7d7a514b5d2c12c7549be062",
-      "installation": "80e72dfb5d2c12c7449be002",
-      "createdBy": "5d7a514b5d2c12c7449be010",
-      "technicien": "5d7a514b5d2c12c7449be016",
-      "type": "Garantie",
-      "dateDemande": "2023-08-15T00:00:00.000Z",
-      "facturation": false,
-      "datePrevisionelIntervention": "2023-08-20T00:00:00.000Z",
-      "dateIntervention": "2023-08-21T00:00:00.000Z",
-      "remarqueDemande": "Remarque 2 sur la demande",
-      "remarqueIntervention": "Remarque 2 sur l'intervention"
-    },
-    {
-        "_id": "7d7a514b5d2c12c7549be063",
-      "installation": "80e72dfb5d2c12c7449be001",
-      "createdBy": "5d7a514b5d2c12c7449be010",
-      "technicien": "5d7a514b5d2c12c7449be016",
-      "type": "Garantie",
-      "dateDemande": "2023-08-25T00:00:00.000Z",
-      "facturation": false,
-      "datePrevisionelIntervention": "2023-09-01T00:00:00.000Z",
-      "remarqueDemande": "Remarque 2 sur la demande",
-      "remarqueIntervention": "Remarque 2 sur l'intervention"
-    },
-    {
-        "_id": "7d7a514b5d2c12c7549be064",
-      "installation": "80e72dfb5d2c12c7449be002",
-      "enAttente": {
-        "status": true,
-        "remarque": "attente receptions pièce"
-      },
-      "createdBy": "5d7a514b5d2c12c7449be010",
-      "technicien": "5d7a514b5d2c12c7449be016",
-      "type": "Garantie",
-      "dateDemande": "2023-08-25T00:00:00.000Z",
-      "facturation": false,
-      "datePrevisionelIntervention": "2023-09-01T00:00:00.000Z",
-      "remarqueDemande": "Remarque 2 sur la demande",
-      "remarqueIntervention": "Remarque 2 sur l'intervention"
-    },
-    {
-      "_id": "7d7a514b5d2c12c7549be065",
-      "installation": "80e72dfb5d2c12c7449be001",
-      "createdBy": "5d7a514b5d2c12c7449be010",
-      "technicien": "60e830a8d4f9a3c2497be002",
-      "type": "SAV",
-      "dateDemande": "2023-08-24T00:00:00.000Z",
-      "facturation": true,
-      "datePrevisionelIntervention": "2023-09-01T00:00:00.000Z",
-      "dateIntervention": "2023-09-02T00:00:00.000Z",
-      "remarqueDemande": "Remarque sur la demande",
-      "remarqueIntervention": "Remarque sur l'intervention"
-    },
-   
-    {
-      "_id": "7d7a514b5d2c12c7549be066",
-      "installation": "80e72dfb5d2c12c7449be002",
-      "enAttente": {
-        "status": true,
-        "remarque": "En attente de réception des pièces"
-      },
-      "createdBy": "5d7a514b5d2c12c7449be010",
-      "technicien": "5d7a514b5d2c12c7449be016",
-      "type": "Garantie",
-      "dateDemande": "2023-08-25T00:00:00.000Z",
-      "facturation": false,
-      "datePrevisionelIntervention": "2023-09-01T00:00:00.000Z",
-      "remarqueDemande": "Remarque 3 sur la demande",
-      "remarqueIntervention": "Remarque 3 sur l'intervention"
-    },
- 
-    {
-      "_id": "7d7a514b5d2c12c7549be067",
-      "installation": "80e72dfb5d2c12c7449be003",
-      "createdBy": "5d7a514b5d2c12c7449be011",
-      "technicien": "5d7a514b5d2c12c7449be017",
-      "type": "SAV",
-      "dateDemande": "2023-08-15T00:00:00.000Z",
-      "facturation": true,
-      "datePrevisionelIntervention": "2023-09-15T00:00:00.000Z",
-      "remarqueDemande": "Remarque 4 sur la demande",
-      "remarqueIntervention": "Remarque 4 sur l'intervention"
     }
   ]
   

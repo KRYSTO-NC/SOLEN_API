@@ -1,28 +1,40 @@
-const express = require('express');
+const express = require('express')
 const {
   getInstallations,
-  createInstallation,
   getInstallation,
   updateInstallation,
   deleteInstallation,
-} = require('../controllers/installations');
+  createInstallation,
+} = require('../controllers/installations')
 
-const Installation = require('../models/Installation');
+const Installation = require('../models/Installation')
 
-const router = express.Router({ mergeParams: true });
+// incude other resource routers
+const interventionRouter = require('./interventions')
 
-const advancedResults = require('../middlewares/advancedResults');
-const { protect, authorize } = require('../middlewares/auth');
+const router = express.Router({ mergeParams: true })
+
+// Re-route into other resource routers
+router.use('/:installationId/interventions', interventionRouter)
+
+const advancedResults = require('../middlewares/advancedResults')
+const { protect, authorize } = require('../middlewares/auth')
 
 router
   .route('/')
-  .get(advancedResults(Installation, 'typeInstallation benneficiaire demandeur interventions'), getInstallations)
-  .post(protect, authorize('admin'), createInstallation);
+  .get(
+    advancedResults(
+      Installation,
+      'typeInstallation benneficiaire demandeur interventions',
+    ),
+    getInstallations,
+  )
+  .post(createInstallation)
 
 router
   .route('/:id')
   .get(getInstallation)
-  .put(protect, authorize('admin'), updateInstallation)
-  .delete(protect, authorize('admin'), deleteInstallation);
+  .put(updateInstallation)
+  .delete(deleteInstallation)
 
-module.exports = router;
+module.exports = router

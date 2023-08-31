@@ -31,21 +31,18 @@ const auth = require('./routes/auth')
 const users = require('./routes/users')
 const origines = require('./routes/origines.js')
 const contacts = require('./routes/contacts.js')
-const communes = require('./routes/communes.js')
 const benneficiaires = require('./routes/benneficiaires.js')
 const demandeurs = require('./routes/demandeurs.js')
 const typesInstallation = require('./routes/typeInstallations.js')
 const installations = require('./routes/installations.js')
 const compagnies = require('./routes/companies.js')
 const interventions = require('./routes/interventions.js')
-const documents = require('./routes/documents.js')
 
 // initialize express  application
 const app = express()
 app.set('view engine', 'ejs')
 // Body parser
 app.use(express.json())
-
 
 // Dev logging Middleware
 if (process.env.NODE_ENV === 'development') {
@@ -92,7 +89,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/v1/auth', auth)
 app.use('/api/v1/users', users)
 app.use('/api/v1/origines', origines)
-app.use('/api/v1/communes', communes)
 app.use('/api/v1/contacts', contacts)
 app.use('/api/v1/compagnies', compagnies)
 app.use('/api/v1/benneficiares', benneficiaires)
@@ -100,7 +96,6 @@ app.use('/api/v1/demandeurs', demandeurs)
 app.use('/api/v1/types-installation', typesInstallation)
 app.use('/api/v1/installations', installations)
 app.use('/api/v1/interventions', interventions)
-app.use('/api/v1/documents', documents)
 
 app.use(errorHandler)
 
