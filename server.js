@@ -38,12 +38,14 @@ const typesInstallation = require('./routes/typeInstallations.js')
 const installations = require('./routes/installations.js')
 const compagnies = require('./routes/companies.js')
 const interventions = require('./routes/interventions.js')
+const documents = require('./routes/documents.js')
 
 // initialize express  application
 const app = express()
 app.set('view engine', 'ejs')
 // Body parser
 app.use(express.json())
+
 
 // Dev logging Middleware
 if (process.env.NODE_ENV === 'development') {
@@ -98,6 +100,7 @@ app.use('/api/v1/demandeurs', demandeurs)
 app.use('/api/v1/types-installation', typesInstallation)
 app.use('/api/v1/installations', installations)
 app.use('/api/v1/interventions', interventions)
+app.use('/api/v1/documents', documents)
 
 app.use(errorHandler)
 

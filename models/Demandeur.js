@@ -12,7 +12,6 @@ const DemandeurSchema = new mongoose.Schema(
       enum: ["Professionnel", "Particulier"],
     },
  
-
     compagny: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Compagny',

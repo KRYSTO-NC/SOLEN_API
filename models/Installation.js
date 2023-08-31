@@ -1,17 +1,69 @@
-const mongoose = require('mongoose')
-const geocoder = require('../utils/geocoder')
+const mongoose = require("mongoose");
+const geocoder = require("../utils/geocoder");
+
+// Définition du schéma de l'installation
 const InstallationSchema = new mongoose.Schema(
   {
+    // Informations générales
     typeInstallation: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'TypeInstallation',
+      ref: "TypeInstallation",
     },
     refference: {
       type: String,
     },
     status: {
       type: String,
-      enum: ['Etude', 'EnService', 'AttentAutorisation' , 'Projet', 'SansSuite' , "AInstaller", "RetardInstallation"],
+      enum: [
+        "Etude",
+        "EnService",
+        "AttenteAutorisation",
+        "AttenteConformité",
+        "Projet",
+        "SansSuite",
+        "AInstaller",
+        "RetardInstallation",
+      ],
+    },
+    demandeur: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Demandeur",
+    },
+    benneficiaire: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Benneficiaire",
+    },
+    concessionaire: {
+      type: String,
+      enum: ["EEC", "Enercal"],
+    },
+    numCompteurEnercal: {
+      type: Date,  // Vérifier si c'est le bon type
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: {
+        type: String,
+        enum: ["Point"],
+      },
+      coordinates: {
+        type: [Number],
+        index: "2dsphere",
+      },
+      formattedAddress: String,
+      street: String,
+      city: String,
+      zipcode: String,
+      country: String,
+    },
+    numClientEnercal: {
+      type: Date,  // Vérifier si c'est le bon type
+    },
+    datePose: {
+      type: Date,
     },
     datePrevisionelMiseEnService: {
       type: Date,
@@ -19,14 +71,97 @@ const InstallationSchema = new mongoose.Schema(
     dateMiseEnService: {
       type: Date,
     },
-
-    dateDemandeEEC: {
-      type: Date,
+    // Gestion de la garantie
+    garantie: {
+      actif: {
+        type: Boolean,
+        default: function () {
+          return !!this.dateMiseEnService;  // true si dateMiseEnService est définie
+        },
+      },
+      duree: {
+        type: Number,
+        default: 1,  // Durée par défaut de 1 an
+      },
+      dateFin: {
+        type: Date,
+        default: function () {
+          if (this.dateMiseEnService) {
+            const dateFin = new Date(this.dateMiseEnService);
+            dateFin.setFullYear(dateFin.getFullYear() + this.garantie.duree);
+            return dateFin;
+          }
+          return null;
+        },
+      },
     },
-    dateAutorisationsEEC: {
-      type: Date,
+    // Informations sur la demande EEC
+    demandeEEC: {
+      dateDemande: {
+        type: Date,
+      },
+      dateReponse: {
+        type: Date,
+      },
+      status: {
+        type: String,
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
+      },
+      remarque: String,
     },
-
+    // Informations sur la demande Enercal
+    demandeEnercal: {
+      dateDemande: {
+        type: Date,
+      },
+      dateReponse: {
+        type: Date,
+      },
+      status: {
+        type: String,
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
+      },
+      remarque: String,
+    },
+    // Informations sur la demande Dimenc
+    demandeDimenc: {
+      dateDemande: {
+        type: Date,
+      },
+      dateAcusée: {
+        type: Date,
+      },
+      finDelaiRetraction: {
+        type: Date,
+      },
+      status: {
+        type: String,
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
+      },
+      remarque: String,
+    },
+    // Informations sur la conformité
+    conformite: {
+      dateDemande: {
+        type: Date,
+      },
+      dateAcusée: {
+        type: Date,
+      },
+      finDelaiRetraction: {
+        type: Date,
+      },
+      status: {
+        type: String,
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
+      },
+      remarque: String,
+    },
+    // Status global de la demande
+    statusDemande: {
+      type: String,
+      enum: ["Encours", "Acceptée", "Refusé"],
+    },
     nombreJourRetard: {
       type: Number,
       default: 0,
@@ -35,18 +170,7 @@ const InstallationSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-
-    demandeur: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Demandeur',
-    },
-    
-    benneficiaire: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Benneficiaire',
-    },
-
-   
+    // Informations techniques
     puissanceSouscrite: {
       type: Number,
     },
@@ -68,25 +192,10 @@ const InstallationSchema = new mongoose.Schema(
     capaciteBatterie: {
       type: Number,
     },
-    concessionaire: {
-      type: String,
-      enum: ['EEC', 'Enercal'],
-    },
-
-  
-
-    numCompteurEnercal: {
-      type: Date,
-    },
-
-    numClientEnercal: {
-      type: Date,
-    },
-
     onduleurs: [
       {
         ref: {
-          type: String, // Ou Number, selon le type de la référence dolibar
+          type: String,
         },
         nombre: {
           type: Number,
@@ -96,7 +205,7 @@ const InstallationSchema = new mongoose.Schema(
     systemeDeSupportage: [
       {
         ref: {
-          type: String, // Ou Number, selon le type de la référence dolibar
+          type: String,
         },
         nombre: {
           type: Number,
@@ -106,7 +215,7 @@ const InstallationSchema = new mongoose.Schema(
     batteries: [
       {
         ref: {
-          type: String, // Ou Number, selon le type de la référence dolibar
+          type: String,
         },
         nombre: {
           type: Number,
@@ -116,51 +225,27 @@ const InstallationSchema = new mongoose.Schema(
         },
       },
     ],
-
-    address: {
-      type: String,
-      required: true,
-    },
-
-    location: {
-      type: {
-        type: String,
-        enum: ['Point'],
-      },
-      coordinates: {
-        type: [Number],
-        index: '2dsphere',
-      },
-      formattedAddress: String,
-      street: String,
-      city: String,
-      zipcode: String,
-      country: String,
-    },
   },
-
   {
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  },
-)
+  }
+);
 
-
-// Reverse populate with virtuals
-
-InstallationSchema.virtual('interventions', {
-  ref: 'Intervention',
-  localField: '_id',
-  foreignField: 'installation',
+// Reverse populate avec des virtuals
+InstallationSchema.virtual("interventions", {
+  ref: "Intervention",
+  localField: "_id",
+  foreignField: "installation",
   justOne: false,
-})
+});
 
-// Geocode & create location
-InstallationSchema.pre('save', async function (next) {
-  const loc = await geocoder.geocode(this.address)
+// Géocodage et création de la localisation
+InstallationSchema.pre("save", async function (next) {
+  const loc = await geocoder.geocode(this.address);
   this.location = {
-    type: 'Point',
+    type: "Point",
     coordinates: [loc[0].longitude, loc[0].latitude],
     formattedAddress: loc[0].formattedAddress,
     street: loc[0].streetName,
@@ -168,84 +253,53 @@ InstallationSchema.pre('save', async function (next) {
     state: loc[0].stateCode,
     zipcode: loc[0].zipcode,
     country: loc[0].countryCode,
-  }
+  };
+  this.address = undefined;
+  next();
+});
 
-  // Do not save address
-  this.address = undefined
-  next()
-})
-
-// Middleware pour incrémenter la référence
-InstallationSchema.pre('save', async function (next) {
-  console.log("Pre-save middleware for reference increment started");
-
+// Middleware pour calculer le nombre de jours depuis la date de demande et le nombre de jours de retard
+InstallationSchema.pre("save", function (next) {
+  // Calculs pour le nombre de jours de retard et depuis la date de demande
   const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-
-  console.log(`Year: ${year}, Month: ${month}`);
-
-  // Trouver le dernier enregistrement en triant par référence pour l'année et le mois donnés
-  const lastRecord = await this.constructor.findOne({
-    refference: { $regex: new RegExp(`^${year}${month}`) },
-  }).sort({ refference: -1 });
-
-  console.log("Last record found: ", lastRecord);
-
-  // Extraire le numéro et l'incrémenter, ou commencer par 1 si aucun enregistrement n'est trouvé
-  let number = 1;
-  if (lastRecord) {
-    const lastNumber = lastRecord.refference.split('-')[1];
-    number = parseInt(lastNumber) + 1;
+  if (this.datePrevisionelMiseEnService) {
+    const diff = Math.abs(now - this.datePrevisionelMiseEnService);
+    const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    this.nombreJourRetard = now > this.datePrevisionelMiseEnService ? diffDays : 0;
   }
+  if (this.demandeEEC.dateDemande) {
+    const diff = Math.abs(now - this.demandeEEC.dateDemande);
+    const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    this.nombreJoursDepuisDemande = diffDays;
+  }
+  next();
+});
 
-  console.log("Number to be used for reference: ", number);
+// Middleware pour calculer la date de fin du délai de rétractation pour demandeDimenc
+InstallationSchema.pre("save", function (next) {
+  if (this.demandeDimenc.dateAcusée) {
+    const dateFinDelai = new Date(this.demandeDimenc.dateAcusée);
+    dateFinDelai.setDate(dateFinDelai.getDate() + 30);
+    this.demandeDimenc.finDelaiRetraction = dateFinDelai;
+  }
+  next();
+});
 
-  // Formater la référence
-  this.refference = `${year}${month}-${String(number).padStart(5, '0')}`;
+// Middleware pour calculer le statut global de la demande
+InstallationSchema.pre("save", function (next) {
+  const statusEEC = this.demandeEEC.status;
+  const statusEnercal = this.demandeEnercal.status;
+  const statusDimenc = this.demandeDimenc.status;
 
-  console.log("Final reference value: ", this.refference);
-  
+  if ((statusEEC === "Acceptée" || statusEnercal === "Acceptée") && statusDimenc === "Acceptée") {
+    this.statusDemande = "Acceptée";
+  } else if (statusEEC === "Refusé" || statusEnercal === "Refusé" || statusDimenc === "Refusé") {
+    this.statusDemande = "Refusé";
+  } else {
+    this.statusDemande = "Encours";
+  }
   next();
 });
 
 
-
-InstallationSchema.pre('save', async function (next) {
-  const now = new Date();
-
-  // Check if all dates are undefined and set status to 'Etude'
-  if (!this.dateMiseEnService && !this.datePrevisionelMiseEnService && !this.dateDemandeEEC) {
-    this.status = 'Etude';
-  }
-
-  // Mettre à jour le statut
-  if (this.dateMiseEnService) {
-    this.status = 'EnService';
-  } else if (this.datePrevisionelMiseEnService) {
-    if (this.datePrevisionelMiseEnService > now) {
-      this.status = 'RetardInstallation';
-    } else {
-      this.status = 'AInstaller';
-    }
-  } else if (this.dateDemandeEEC && !this.datePrevisionelMiseEnService) {
-    this.status = 'AttenteAutorisation';
-  }
-
-  // Calculer le nombre de jours de retard
-  if (this.datePrevisionelMiseEnService && this.datePrevisionelMiseEnService > now) {
-    this.nombreJourRetard = Math.ceil((this.datePrevisionelMiseEnService - now) / (1000 * 60 * 60 * 24));
-  } else {
-    this.nombreJourRetard = 0;
-  }
-
-  // Calculer le nombre de jours depuis la demande
-  if (this.dateDemandeEEC) {
-    this.nombreJoursDepuisDemande = Math.ceil((now - this.dateDemandeEEC) / (1000 * 60 * 60 * 24));
-  } else {
-    this.nombreJoursDepuisDemande = 0;
-  }
-
-  next();
-});
-module.exports = mongoose.model('Installation', InstallationSchema)
+module.exports = mongoose.model("Installation", InstallationSchema);

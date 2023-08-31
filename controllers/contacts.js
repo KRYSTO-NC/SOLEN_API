@@ -1,6 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middlewares/async");
 const Contact = require("../models/Contact");
+const Company = require("../models/Compagny");
 
 
 //@description:     Get all contacts
@@ -38,7 +39,30 @@ exports.createNewContact = asyncHandler(async (req, res, next) => {
   });
 });
 
+//@description:     Create new contact for specific company
+//@route:          POST /api/v1/companies/:companyId/contacts
+//@access:          Private
+exports.createNewContactForCompany = asyncHandler(async (req, res, next) => {
+  req.body.company = req.params.companyId;
+  req.body.user = req.user.id;
 
+  const company = await Company.findById(req.params.companyId);
+
+  if (!company) {
+    return next(
+      new ErrorResponse(
+        `No company with the id of ${req.params.companyId}`,
+        404
+      )
+    );
+  }
+  const contact = await Contact.create(req.body);
+
+  res.status(201).json({
+    success: true,
+    data: contact,
+  });
+});
 
 //@description:     Update contact
 //@ route:          PUT /api/v1/contacts/:id

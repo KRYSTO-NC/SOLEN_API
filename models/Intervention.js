@@ -15,6 +15,7 @@ const InterventionSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
+      
     technicien: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -41,7 +42,11 @@ const InterventionSchema = new mongoose.Schema(
       dateDemande: {
         type: Date,
       },
+
       facturation: {
+        type : Boolean
+      },
+      garantie: {
         type : Boolean
       },
 
