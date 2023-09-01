@@ -8,11 +8,6 @@ const ContratMaintenanceSchema = new mongoose.Schema(
       required: true,
     },
 
-    factured: {
-      type: Boolean,
-      default: false,
-    },
-
     dateDebut: {
       type: Date,
       required: true,

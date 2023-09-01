@@ -2,10 +2,7 @@ const mongoose = require('mongoose')
 
 const InterventionSchema = new mongoose.Schema(
   {
-    installation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Installation',
-    },
+  
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -45,6 +42,10 @@ const InterventionSchema = new mongoose.Schema(
     },
     remarqueIntervention: {
       type: String,
+    },
+    installation: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Installation',
     },
   },
 

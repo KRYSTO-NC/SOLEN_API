@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const geocoder = require('../utils/geocoder')
+const mongoose = require("mongoose");
+const geocoder = require("../utils/geocoder");
 
 // Définition du schéma de l'installation
 const InstallationSchema = new mongoose.Schema(
@@ -7,29 +7,35 @@ const InstallationSchema = new mongoose.Schema(
     // Informations générales
     typeInstallation: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'TypeInstallation',
+      ref: "TypeInstallation",
     },
     refference: {
       type: String,
     },
     status: {
       type: String,
-      enum: ['Etude', 'EnService', 'Projet', 'SansSuite'],
+      enum: ["Etude", "EnService", "Projet", "SansSuite"],
     },
     demandeur: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Demandeur',
+      IdDolibarr: {
+        type: String,
+      },
+      remarque: String,
     },
+
     benneficiaire: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Benneficiaire',
+      IdDolibarr: {
+        type: String,
+      },
+      remarque: String,
     },
+
     concessionaire: {
       type: String,
-      enum: ['EEC', 'Enercal'],
+      enum: ["EEC", "Enercal"],
     },
     numCompteurEnercal: {
-      type: Date, // Vérifier si c'est le bon type
+      type: Date,
     },
     address: {
       type: String,
@@ -37,7 +43,7 @@ const InstallationSchema = new mongoose.Schema(
     },
 
     numClientEnercal: {
-      type: Date, // Vérifier si c'est le bon type
+      type: Date,
     },
     datePose: {
       type: Date,
@@ -71,7 +77,7 @@ const InstallationSchema = new mongoose.Schema(
       },
       status: {
         type: String,
-        enum: ['enDemande', 'Acceptée', 'Refusé', 'sous-reserve'],
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
       },
       remarque: String,
     },
@@ -85,7 +91,7 @@ const InstallationSchema = new mongoose.Schema(
       },
       status: {
         type: String,
-        enum: ['enDemande', 'Acceptée', 'Refusé', 'sous-reserve'],
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
       },
       remarque: String,
     },
@@ -102,7 +108,7 @@ const InstallationSchema = new mongoose.Schema(
       },
       status: {
         type: String,
-        enum: ['enDemande', 'Acceptée', 'Refusé', 'sous-reserve'],
+        enum: ["enDemande", "Acceptée", "Refusé", "sous-reserve"],
       },
       remarque: String,
     },
@@ -174,15 +180,15 @@ const InstallationSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  },
-)
+  }
+);
 
 // Reverse populate avec des virtuals
-InstallationSchema.virtual('interventions', {
-  ref: 'Intervention',
-  localField: '_id',
-  foreignField: 'installation',
+InstallationSchema.virtual("interventions", {
+  ref: "Intervention",
+  localField: "_id",
+  foreignField: "installation",
   justOne: false,
-})
+});
 
-module.exports = mongoose.model('Installation', InstallationSchema)
+module.exports = mongoose.model("Installation", InstallationSchema);

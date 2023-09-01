@@ -8,13 +8,13 @@ const User = require("../models/User");
 // @route     POST /api/v1/auth/register
 // @access    Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const {  email, password, role } = req.body;
+  const { email, password, role } = req.body;
 
   // Create user
   const user = await User.create({
     email,
     password,
-    role
+    role,
   });
 
   sendTokenResponse(user, 200, res);
@@ -140,7 +140,7 @@ Nous avons reçu une demande de réinitialisation de mot de passe pour votre com
 
 Si vous n'avez pas fait cette demande ou si vous rencontrez des difficultés lors de la réinitialisation de votre mot de passe, veuillez nous contacter immédiatement à [adresse e-mail du support].
 
-Veuillez noter que ce lien de réinitialisation de mot de passe est valable pendant [durée de validité du lien]. Après cela, vous devrez soumettre une nouvelle demande si vous souhaitez réinitialiser votre mot de passe.`
+Veuillez noter que ce lien de réinitialisation de mot de passe est valable pendant [durée de validité du lien]. Après cela, vous devrez soumettre une nouvelle demande si vous souhaitez réinitialiser votre mot de passe.`;
 
   try {
     await sendEmail({
@@ -198,7 +198,7 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 const sendTokenResponse = (user, statusCode, res) => {
   // Create token
   const token = user.getSignedJwtToken();
-  
+
   const options = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000

@@ -11,11 +11,14 @@ const Installation = require('../models/Installation')
 
 // incude other resource routers
 const interventionRouter = require('./interventions')
+const contratMaintenanceRouter = require('./contratMaintenances')
+
 
 const router = express.Router({ mergeParams: true })
 
 // Re-route into other resource routers
 router.use('/:installationId/interventions', interventionRouter)
+router.use('/:installationId/contratMaintenances', contratMaintenanceRouter)
 
 const advancedResults = require('../middlewares/advancedResults')
 const { protect, authorize } = require('../middlewares/auth')

@@ -9,15 +9,10 @@ dotenv.config({ path: './config/config.env' })
 // Load models
 
 const User = require('./models/User')
-const Contact = require('./models/Contact')
-const Compagny = require('./models/Compagny')
-const Demandeur = require('./models/Demandeur')
 const TypeInstallation = require('./models/TypeInstallation')
 const Installation = require('./models/Installation')
 const Intervention = require('./models/Intervention')
-const Benneficiare = require('./models/Benneficiaire')
-
-const Origine = require('./models/Origine')
+const ContratMaintenance = require('./models/ContratMaintenance')
 
 // Connect to DB
 mongoose.set('strictQuery', false)
@@ -31,45 +26,29 @@ const users = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8'),
 )
 
-const contacts = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/contacts.json`, 'utf-8'),
-)
-const compagnies = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/compagnies.json`, 'utf-8'),
-)
-const demandeurs = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/demandeur.json`, 'utf-8'),
-)
+
 const typeInstallations = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/typeInstallations.json`, 'utf-8'),
 )
 const installations = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/installations.json`, 'utf-8'),
 )
-const benneficiaires = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/benneficiares.json`, 'utf-8'),
-)
-
-const origines = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/origines.json`, 'utf-8'),
-)
 
 const interventions = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/interventions.json`, 'utf-8'),
+)
+const contratsMaintenance = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/contratsMaintenance.json`, 'utf-8'),
 )
 
 // Import into DB
 const importData = async () => {
   try {
     await User.create(users)
-    await Contact.create(contacts)
-    await Compagny.create(compagnies)
-    await Demandeur.create(demandeurs)
     await TypeInstallation.create(typeInstallations)
     await Installation.create(installations)
-    await Benneficiare.create(benneficiaires)
-    await Origine.create(origines)
     await Intervention.create(interventions)
+    await ContratMaintenance.create(contratsMaintenance)
 
     console.log('Data Imported...'.green.inverse)
     process.exit()
@@ -82,14 +61,10 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await User.deleteMany()
-    await Contact.deleteMany()
-    await Compagny.deleteMany()
-    await Demandeur.deleteMany()
     await TypeInstallation.deleteMany()
     await Installation.deleteMany()
-    await Benneficiare.deleteMany()
-    await Origine.deleteMany()
     await Intervention.deleteMany()
+    await ContratMaintenance.deleteMany()
     console.log('Data Destroyed...'.red.inverse)
     process.exit()
   } catch (err) {

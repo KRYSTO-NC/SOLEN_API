@@ -1,0 +1,20 @@
+[
+    {
+     "_id": "5d7a514b5d2c12c7549be011",
+      "installation": "80e72dfb5d2c12c7449be001",
+      "dateDebut": "2019-09-12T00:00:00.000Z",
+      "dateFin": "2019-09-12T00:00:00.000Z",
+      "optionsMaintenance": [
+        {
+        "option": "5d7a514b5d2c12c7549be011",
+        "recurence": "Mensuelle"
+        }
+      ],
+      "dateDemande": "2023-08-24T00:00:00.000Z",
+      "facturation": true,
+      "garantie": true,
+      "remarqueDemande": "Remarque sur le contrat de maintenance"
+    }
+  ]
+  
+  
